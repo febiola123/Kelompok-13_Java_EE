@@ -31,12 +31,40 @@ public class DashboardController {
         return adminView;
     }
 
+    @RequestMapping(value = "/pengguna", method = RequestMethod.GET)
+    public ModelAndView getUserNamePengguna(@ModelAttribute("username") String username, Model model){
+        List<Booking> bookingList = service.listAllByUsername(username);
+        model.addAttribute("getAllBooking", bookingList);
+
+        ModelAndView penggunaView = new ModelAndView("pengguna");
+        penggunaView.addObject("username", username);
+
+        return penggunaView;
+    }
+
     @RequestMapping(value = "/pengguna")
     public ModelAndView getListMemberOrder(Model model) {
         List<Booking> bookingList = service.listAll();
         model.addAttribute("getAllBooking", bookingList);
         return new ModelAndView("pengguna");
     }
+
+    @RequestMapping(value = "/tambah_booking")
+    public ModelAndView viewTambahBooking(){
+        List<Bandara> listBandara = bandaraService.listAllBandara();
+
+        ModelAndView model = new ModelAndView("tambah_booking");
+        model.addObject("booking", new Booking());
+        model.addObject("bandara", listBandara);
+        return model;
+    }
+
+    @RequestMapping(value = "/simpan_booking", method = RequestMethod.POST)
+    public ModelAndView tambahBooking(@ModelAttribute("booking") Booking booking){
+        service.create(booking);
+        return new ModelAndView("redirect:/pengguna");
+    }
+
 
     @RequestMapping(value = "/delete/{id}")
     public ModelAndView deleteBooking(@PathVariable(name = "id") long id) {

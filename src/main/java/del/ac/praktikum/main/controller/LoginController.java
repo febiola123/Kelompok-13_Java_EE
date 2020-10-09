@@ -6,7 +6,6 @@ import del.ac.praktikum.main.jpa.UserRepository;
 import del.ac.praktikum.main.model.Role;
 import del.ac.praktikum.main.model.User;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -57,6 +56,4 @@ public class LoginController {
             return new ModelAndView("redirect:/login");
         }
     }
-
-
 }

@@ -17,6 +17,10 @@ public class BookingService {
         return repository.findAll();
     }
 
+    public List<Booking> listAllByUsername(String username){
+        return repository.findByUsername(username);
+    }
+
     public void create(Booking booking){
         repository.save(booking);
     }
