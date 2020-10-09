@@ -34,21 +34,29 @@ public class LoginController {
         return mv;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView submitLogin(@ModelAttribute User user, BindingResult bindingResult, Model model){
+    @RequestMapping(value = "/dashboard", method = RequestMethod.POST)
+    public ModelAndView submitLogin(@ModelAttribute User user, Model model){
 
         model.addAttribute("user", user);
         User userRole = userRepository.findByUsername(user.getUsername());
 
-        System.out.println(userRole.getRoleid());
+        ModelAndView adminView = new ModelAndView("redirect:/admin");
+        adminView.addObject("username", userRole.getUsername());
 
+        ModelAndView penggunaView = new ModelAndView("redirect:/pengguna");
+        penggunaView.addObject("username", userRole.getUsername());
+
+        //System.out.println(userRole.getUsername());
+       //System.out.println(userRole.getRoleid());
         if(userRole.getRoleid() == 1){
-            return new ModelAndView("redirect:/admin");
+            return adminView;
         }
         if(userRole.getRoleid() == 2){
-            return new ModelAndView("redirect:/pengguna");
+            return penggunaView;
         }else{
             return new ModelAndView("redirect:/login");
         }
     }
+
+
 }

@@ -26,11 +26,9 @@ public class RegistrationController {
     public ModelAndView registration() {
         List<Role> listRoles = roleRepository.findAll();
         System.out.println(listRoles.size());
-
         ModelAndView mv = new ModelAndView("registration");
         mv.addObject("roles", listRoles);
         mv.addObject("user", new User());
-
         return mv;
     }
 

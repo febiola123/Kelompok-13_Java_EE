@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "t_bandara")
-public class Location {
+public class Bandara {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idbandara")
@@ -12,9 +12,9 @@ public class Location {
     @Column(name = "location")
     private String location;
 
-    public Location() {
+    public Bandara() {
     }
-    public Location(Long idbandara, String location) {
+    public Bandara(Long idbandara, String location) {
         this.idbandara = idbandara;
         this.location = location;
     }

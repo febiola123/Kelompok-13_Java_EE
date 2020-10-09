@@ -1,9 +1,6 @@
 package del.ac.praktikum.main.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -15,6 +12,7 @@ public class Login {
     @Column(name = "roleid")
     private int roleid;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastlogin")
     private Date lastlogin;
     @Column(name = "isactive")
